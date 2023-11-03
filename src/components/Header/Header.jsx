@@ -12,6 +12,7 @@ import Search from './Search/Search'
 
 const Header = () => {
     const [scrolled, setScrolled]=useState(false)
+    const [showCart,setShowCart]=useState(false)
       useEffect(()=>{
            window.addEventListener('scroll',()=>{
             const offset =window.scrollY
@@ -23,7 +24,8 @@ const Header = () => {
            })
       },[])
 
-    return <header className={` main-header  ${scrolled ? 'sticky-header':''}`}>
+    return <> 
+    <header className={` main-header  ${scrolled ? 'sticky-header':''}`}>
         <div className="header-content">
             <ul className="left">
                 <li>Home</li>
@@ -34,13 +36,19 @@ const Header = () => {
             <div className="right">
                 <TbSearch></TbSearch>
                 <AiOutlineHeart></AiOutlineHeart>
-            <span className="cart-icon">
+            <span className="cart-icon"
+                   onClick={()=>{
+                    setShowCart(true)
+                   }}
+            >
                  <CgShoppingCart></CgShoppingCart>
                  <span>15</span>
             </span>
             </div>
         </div>
-    </header>;
+    </header>
+    {showCart && <Cart setShowCart={setShowCart}></Cart>}
+    </>;
 };
 
 export default Header;
