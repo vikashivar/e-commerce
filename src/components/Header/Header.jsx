@@ -13,6 +13,7 @@ import Search from './Search/Search'
 const Header = () => {
     const [scrolled, setScrolled]=useState(false)
     const [showCart,setShowCart]=useState(false)
+    const [showSearch,setShowSearch]=useState(false)
       useEffect(()=>{
            window.addEventListener('scroll',()=>{
             const offset =window.scrollY
@@ -34,7 +35,10 @@ const Header = () => {
             </ul>
             <div className="center">E-SHOP</div>
             <div className="right">
-                <TbSearch></TbSearch>
+                <TbSearch style={{zIndex:100}} onClick={()=>{
+                    setShowSearch(true)
+                    console.log('hi')
+                   }} ></TbSearch>
                 <AiOutlineHeart></AiOutlineHeart>
             <span className="cart-icon"
                    onClick={()=>{
@@ -48,6 +52,7 @@ const Header = () => {
         </div>
     </header>
     {showCart && <Cart setShowCart={setShowCart}></Cart>}
+    {showSearch && <Search setShowSearch={setShowSearch}></Search>}
     </>;
 };
 
